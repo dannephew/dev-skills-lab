@@ -18,12 +18,12 @@ app.set(
 )
 app.set('view engine', 'ejs')
 
-// app.use(function(req, res, next) {
-//   // console.log('Hello SEI!');
-//   // Add a time property to the req object
-//   req.time = new Date().toLocaleTimeString();
-//   next();
-// });
+app.use(function(req, res, next) {
+  // console.log('Hello SEI!');
+  // Add a time property to the req object
+  req.time = new Date().toLocaleTimeString();
+  next();
+});
 
 app.use(logger('dev'))
 app.use(express.json())
