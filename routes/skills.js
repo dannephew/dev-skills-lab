@@ -15,7 +15,6 @@ router.get("/skills", function(req, res) {
   })
 })
 
-router.get("/:id", skillsCtrl.show)
 
 
 /* GET users listing. */
@@ -23,7 +22,11 @@ router.get("/:id", skillsCtrl.show)
 //   res.send('respond with a resource')
 // })
 
+router.get("/new", skillsCtrl.new)
 router.get("/", skillsCtrl.index)
+router.get("/:id", skillsCtrl.show)
+router.post("/", skillsCtrl.create)
+router.delete("/:id", skillsCtrl.delete)
 
 export {
   router

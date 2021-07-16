@@ -1,10 +1,12 @@
 export { 
 	find,
-    findById
+  findById, 
+  create, 
+  findByIdAndDelete
 }
 
 const skills = [
-    {text: 'Eating', valueable: true, _id: 125223},
+    {text: 'Eating', valuable: true, _id: 125223},
     {text: 'Sleeping', valuable: true, _id: 127904},
     {text: 'Dreaming', valuable: true, _id: 139608},
   ]
@@ -31,6 +33,25 @@ const skills = [
       return callback(null, skill)
     } catch (error) {
       console.log(error)
+      return callback(error, null)
+    }
+  }
+
+  function create(skill, callback) {
+    skill._id = Date.now() %1000000
+    skill.done = false
+    skills.push(skill)
+    return callback(null, skill)
+  }
+
+  function findByIdAndDelete(id, callback) {
+    try { 
+      // Find the index based on the _id of the skill object
+      const idx = skills.findIndex(skill => skill._id == parseInt(id))
+      const deletedSkill = skills.splice(idx, 1)
+      if (!deletedSkill.length ) throw new Error ('No skill was deleted')
+      return callback(null, deletedSkill[0])
+    } catch(error) {
       return callback(error, null)
     }
   }

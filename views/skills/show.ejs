@@ -7,13 +7,13 @@
     <title>Skill Details</title>
 </head>
 <body>
-    <h1>Show</h1>
+    <h1>Skill Details</h1>
     <% if(error) { %>
         <h2><% error %> </h2>
     <% } else { %> 
         <h2>Skill #<%= skill._id %></h2>
         <h3><%= skill.text %> </h3>
-        <p>Complete: <%= skill.valuable ? "Yes" : "No" %> </p>
+        <p>Valuable: <%= skill.valuable ? "Yes" : "No" %> </p>
     <% } %> 
     <a href="/skills">Go Back</a>
 </body>

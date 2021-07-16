@@ -2,7 +2,10 @@ import * as skillDb from "../data/skill-db.js"
 
 export{
     index, 
-    show
+    show, 
+    newSkill as new, 
+    create,
+    deleteSkill as delete,
 }
 
 
@@ -13,7 +16,7 @@ function index(req, res) {
                     //file name under views is "skills/index"
           skills: skills,
           error: error,
-        //   time: req.time
+          time: req.time,
         })
       })
 }
@@ -27,3 +30,19 @@ function show(req, res) {
     })
   }
 
+function newSkill(req, res) {
+  res.render("skills/new")
+}
+
+function create(req, res) {
+  // console.log(req.body)
+  skillDb.create(req.body, function(error, skill) {
+    res.redirect("/skills")
+  })
+}
+
+function deleteSkill(req, res) {
+  skillDb.findByIdAndDelete(req.params.id, function(error, skill) {
+    res.redirect("/skills")
+  })
+}
